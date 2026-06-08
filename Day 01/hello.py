@@ -1,0 +1,5 @@
+print("Hello this is day 01 of learning python from basics.")
+print("I am learning python with code with harry's beginer course.")
+print("Currently sticked to his 100 days python tutorials.")
+print("Till now it is a great learning.")
+print("Hope to remain consistent in this series and push code daily :)")
