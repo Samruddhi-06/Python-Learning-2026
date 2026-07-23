@@ -99,3 +99,7 @@ There are total 35 keywords in python
 import keyword
 print(keyword.kwlist)
 ```
+
+## 5. Identifiers
+
+Identifiers are user-defined names used to identify and reference program elements such as variables, functions, classes, modules, and objects. 
