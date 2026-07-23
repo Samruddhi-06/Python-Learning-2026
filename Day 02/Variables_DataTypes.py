@@ -51,3 +51,7 @@ print(int(x) + int(y))
 
 str = input("Enter your name")
 print("My name is",str)
+
+import keyword
+
+print(keyword.kwlist)

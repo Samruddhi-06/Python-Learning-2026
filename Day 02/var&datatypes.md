@@ -88,3 +88,14 @@ Input with type conversion:
 age = int(input("Enter age: "))
 print(age)
 ```
+
+
+## 4. Keywords
+
+These are pre-defined words which can't be used as variables because its meaning is already reserved
+There are total 35 keywords in python
+
+```python
+import keyword
+print(keyword.kwlist)
+```
