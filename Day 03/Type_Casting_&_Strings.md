@@ -127,7 +127,7 @@ text = "Programming"
 print(len(text))
 ```
 
-## 4. Escape sequence 
+## 4. Escape sequences / characters 
 
 Escape Character	Description
 \n	Newline – Moves the cursor to the next line.
