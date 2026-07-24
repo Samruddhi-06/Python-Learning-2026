@@ -126,3 +126,12 @@ text = "Programming"
 
 print(len(text))
 ```
+
+## 4. Escape sequence 
+
+Escape Character	Description
+\n	Newline – Moves the cursor to the next line.
+\t	Tab – Adds a horizontal tab.
+\\	Backslash – Inserts a literal backslash.
+\'	Single Quote – Inserts a single quote inside a single-quoted string.
+\"	Double Quote – Inserts a double quote inside a double-quoted string.

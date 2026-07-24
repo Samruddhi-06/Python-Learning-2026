@@ -62,3 +62,12 @@ print(fruit[0:6])
 
 print(len(nm))
 print(nm[-4:-2])
+
+# Escape Sequence
+
+print("Shopping List : \n1. Shampoo\tConditioner\n2. Toothpaste\n3. BodyWash")
+
+item1 = "It\'s a fiber rod"
+name = "Hello everyone meet Ravi \'CEO\' of \"The revenue\""
+print(item1)
+print(name)
