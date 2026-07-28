@@ -1,4 +1,4 @@
-# Create a python program capable of greeting you with Good m,orning, agternoon, evening. Your program should use time module to get the current hour. 
+# Create a python program capable of greeting you with Good morning, afternoon, evening, night. Your program should use time module to get the current hour. 
 
 import time
 
@@ -15,8 +15,9 @@ if ts2 >= 0 and ts2 < 12  :
     print("Good Morning")
 elif ts2 >= 12 and ts2 < 16  :
     print("Good Afternoon")
-elif ts2 >= 16  and ts2 < 24  :
+elif ts2 >= 16  and ts2 < 20  :
     print("Good Evening")
-
+elif ts2 >= 20  and ts2 < 24  :
+    print("Good Night")
 else :
     print("Not a valid time")
