@@ -68,3 +68,58 @@ print(s1)
 print(s1.difference(s2))
 s1.difference_update(s2)
 print(s1)
+
+
+# Dictionary
+
+d = {
+    'name' : 'Sam',
+    'age' : 21,
+    'gender' : 'female'
+}
+
+print(d)
+for a in d:
+    print(a)
+    print(d[a])
+
+a = d.get('name')
+print(a)
+
+for a in d.keys():
+    print('Keys',a)
+
+for a in d.values():
+    print('values',a)
+
+for a,b in d.items():
+    print("item",a,b)
+
+del d['name']
+print(d)
+
+x = d.pop('age')
+print(x)
+print(d)
+
+d1 = dict(group = 'A', marks = 49)
+print(d1)
+
+d.update({'gender' : 'male'})
+print(d)
+
+# d.clear()
+# print(d)
+
+d1['marks']= 50
+d1['hobby'] = 'Dancing'
+print(d)
+print(d1)
+
+# Nested dictionary
+
+Students = {
+    'student1' : {'name' : 'Ram', 'age' : 20},
+    'student2' : {'name' : 'Sita', 'age' : 21}
+}
+print(Students)
