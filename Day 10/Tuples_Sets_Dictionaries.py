@@ -123,3 +123,4 @@ Students = {
     'student2' : {'name' : 'Sita', 'age' : 21}
 }
 print(Students)
+print(Students['student1']['name'])
