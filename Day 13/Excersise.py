@@ -23,33 +23,40 @@ def random_char():
 # Encoding
 
 def encode(msg):
-        msg_len = len(msg)
-        if msg_len >= 3:
-            result = msg[1:] + msg[0]
-        
-            secret = random_char() + result + random_char()
-            return secret
+        words = msg.split()
+        encoded_words = []
 
-        else:
-            result = msg[::-1]
-            return result
+        for word in words:
+            
+            if len(word) >= 3:
+                result = word[1:] + word[0]
+            
+                secret = random_char() + result + random_char()
+                encoded_words.append(secret)
+
+            else:
+                encoded_words.append(word[::-1])
+        return ' '.join(encoded_words)
 
 
 # Decoding
 
 def decode(msg):
-        msg_len = len(msg)
-        if msg_len < 3:
-            return msg[::-1]
+        words = msg.split()
+        decode_words = []
+        for word in words:
+            if len(word) < 3:
+                decode_words.append(word[::-1]) 
 
-        else:
-            result = msg[3:-3]
+            else:
+                result = word[3:-3]
 
-            if not result:
-                 raise ValueError("Invalid encoded message!!")
+                if not result:
+                    raise ValueError("Invalid encoded message!!")
 
-            decoded = result[-1] + result[:-1]
-            return decoded
+                decoded = result[-1] + result[:-1]
+                decode_words.append(decoded)
+        return ' '.join(decode_words)
 
 
 
