@@ -107,3 +107,19 @@ def func1():
 x = func1()
 print(x)
 
+
+
+# raising custom errors in python
+
+x = int(input("Enter a value between 5 and 9 : "))
+if(x < 5 or x > 9):
+    raise ValueError("Enter a valid value between 5 and 9.")
+
+x = input("Enter a value between 5 and 9 : ")
+
+if(x == 'quit'):
+    print("You chose to quit.")
+elif not x.isdigit() or int(x) < 5 or int(x) > 9:
+    raise ValueError("Not a valid value!! Value must be between 5 and 9.")
+else:
+    print("Valid value : ", x)
