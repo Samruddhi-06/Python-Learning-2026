@@ -2,30 +2,7 @@
 
 ## 1. Short-Hand if-else Statement
 
-Python provides a short way to write an `if-else` statement in a single line.
-
-### Normal if-else
-
-```python
-age = 18
-
-if age >= 18:
-    result = "Eligible"
-else:
-    result = "Not Eligible"
-
-print(result)
-```
-
-### Short-hand if-else
-
-```python
-age = 18
-
-result = "Eligible" if age >= 18 else "Not Eligible"
-
-print(result)
-```
+Python allows us to write a simple `if-else` statement in a single line.
 
 ### Syntax
 
@@ -36,30 +13,22 @@ value_if_true if condition else value_if_false
 ### Example
 
 ```python
-a = 10
-b = 20
+age = 20
 
-greater = a if a > b else b
+result = "Eligible" if age >= 18 else "Not Eligible"
 
-print(greater)
+print(result)
 ```
+
+It is also called a **conditional expression**.
 
 ---
 
 ## 2. enumerate() Function
 
-The `enumerate()` function is used to loop through an iterable while keeping track of the index.
+The `enumerate()` function adds a counter to an iterable and returns both the index and the value.
 
-### Example Without enumerate()
-
-```python
-fruits = ["Apple", "Mango", "Banana"]
-
-for i in range(len(fruits)):
-    print(i, fruits[i])
-```
-
-### Using enumerate()
+### Example
 
 ```python
 fruits = ["Apple", "Mango", "Banana"]
@@ -68,9 +37,15 @@ for index, fruit in enumerate(fruits):
     print(index, fruit)
 ```
 
-### Starting Index from a Different Number
+Output:
 
-The `start` parameter can be used to specify the starting index.
+```text
+0 Apple
+1 Mango
+2 Banana
+```
+
+### Starting from a Different Number
 
 ```python
 fruits = ["Apple", "Mango", "Banana"]
@@ -87,19 +62,13 @@ Output:
 3 Banana
 ```
 
-### Syntax
-
-```python
-enumerate(iterable, start=0)
-```
-
 ---
 
 # 3. Virtual Environment
 
 A virtual environment is an isolated Python environment for a project.
 
-It allows each project to have its own packages and package versions without affecting other Python projects.
+It allows different projects to have their own packages and package versions.
 
 ### Create a Virtual Environment
 
@@ -109,32 +78,39 @@ Windows:
 python -m venv .venv
 ```
 
-### Activate the Virtual Environment
+### Activate on Windows
 
-Windows PowerShell:
+PowerShell:
 
 ```bash
 .venv\Scripts\Activate.ps1
 ```
 
-Windows Command Prompt:
+Command Prompt:
 
-```cmd
+```bash
 .venv\Scripts\activate
 ```
-
-After activation, you will usually see:
-
-```text
-(.venv)
-```
-
-at the beginning of the terminal prompt.
 
 ### Deactivate
 
 ```bash
 deactivate
+```
+
+### Why Use a Virtual Environment?
+
+- Keeps project dependencies isolated.
+- Prevents package-version conflicts.
+- Makes projects easier to reproduce.
+- Keeps the global Python installation clean.
+
+> The virtual environment folder such as `.venv` is normally not uploaded to GitHub.
+
+Add it to `.gitignore`:
+
+```text
+.venv/
 ```
 
 ---
@@ -145,51 +121,266 @@ deactivate
 
 ### Create requirements.txt
 
-If packages are installed in the virtual environment:
+For example:
 
-```bash
-pip freeze > requirements.txt
+```text
+requests
+numpy
+pandas
 ```
 
-This records the installed packages and their versions.
-
-### Install Packages from requirements.txt
+Install the packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-This allows another developer to install the project's dependencies.
+### Generate requirements.txt
+
+```bash
+pip freeze > requirements.txt
+```
+
+This records installed packages and their versions.
 
 ---
 
-# 5. .gitignore for Virtual Environment
+# 5. How Import Works in Python
 
-The virtual environment should normally not be uploaded to GitHub.
+The `import` statement allows us to use code from another module.
 
-Create a file named:
+## A. Using import
 
-```text
-.gitignore
+```python
+import math
+
+print(math.sqrt(25))
 ```
 
-Add:
+---
 
-```text
-.venv/
-venv/
-__pycache__/
-*.pyc
+## B. Using from
+
+The `from` keyword allows us to import specific objects from a module.
+
+```python
+from math import sqrt
+
+print(sqrt(25))
 ```
 
-This prevents the virtual environment and Python cache files from being tracked by Git.
+Multiple objects can also be imported:
+
+```python
+from math import sqrt, factorial
+
+print(sqrt(25))
+print(factorial(5))
+```
+
+---
+
+## C. Importing Everything
+
+The `*` symbol imports all names that are exported by the module.
+
+```python
+from math import *
+
+print(sqrt(25))
+print(factorial(5))
+```
+
+However, this is generally **not recommended** because it can make it unclear where names came from and can cause naming conflicts.
+
+---
+
+## D. Using the `as` Keyword
+
+`as` gives a module or imported object an alias.
+
+```python
+import math as m
+
+print(m.sqrt(25))
+```
+
+You can also give a function an alias:
+
+```python
+from math import factorial as fact
+
+print(fact(5))
+```
+
+---
+
+## E. dir() Function
+
+The `dir()` function returns a list of names available in an object or module.
+
+```python
+import math
+
+print(dir(math))
+```
+
+It can be useful for exploring the functions and attributes available in a module.
+
+---
+
+# 6. if __name__ == "__main__"
+
+Every Python module has a special built-in variable called `__name__`.
+
+When a Python file is executed directly, its `__name__` is set to:
+
+```python
+"__main__"
+```
+
+Therefore:
+
+```python
+if __name__ == "__main__":
+    print("This file is being executed directly.")
+```
+
+The code inside this block runs when the file is executed directly, but not when the file is imported as a module.
+
+### Example
+
+`my_module.py`
+
+```python
+def greet():
+    print("Hello from my module!")
+
+
+if __name__ == "__main__":
+    greet()
+```
+
+If you run:
+
+```bash
+python my_module.py
+```
+
+the `greet()` function executes.
+
+If another file imports it:
+
+```python
+import my_module
+```
+
+the `if __name__ == "__main__":` block does not execute.
+
+This is useful for keeping **reusable module code** separate from **code that should run when the file is executed directly**.
+
+---
+
+# 7. os Module
+
+The `os` module provides functions for interacting with the operating system.
+
+```python
+import os
+```
+
+## getcwd()
+
+Returns the current working directory.
+
+```python
+print(os.getcwd())
+```
+
+## listdir()
+
+Returns the files and directories in a location.
+
+```python
+print(os.listdir())
+```
+
+## mkdir()
+
+Creates a directory.
+
+```python
+os.mkdir("test_folder")
+```
+
+## makedirs()
+
+Creates directories recursively.
+
+```python
+os.makedirs("folder1/folder2")
+```
+
+## chdir()
+
+Changes the current working directory.
+
+```python
+os.chdir("test_folder")
+```
+
+## remove()
+
+Removes a file.
+
+```python
+os.remove("sample.txt")
+```
+
+## rmdir()
+
+Removes an empty directory.
+
+```python
+os.rmdir("test_folder")
+```
+
+## rename()
+
+Renames a file or directory.
+
+```python
+os.rename("old.txt", "new.txt")
+```
+
+## path.exists()
+
+Checks whether a path exists.
+
+```python
+print(os.path.exists("sample.txt"))
+```
+
+## path.join()
+
+Joins path components correctly for the operating system.
+
+```python
+path = os.path.join("folder", "file.txt")
+print(path)
+```
 
 ---
 
 # Summary
 
-- Short-hand if-else allows simple conditional expressions in one line.
-- `enumerate()` provides both the index and value while iterating.
-- A virtual environment isolates project dependencies.
+- Short-hand `if-else` provides a concise conditional expression.
+- `enumerate()` gives both index and value while iterating.
+- Virtual environments isolate project dependencies.
 - `requirements.txt` records project dependencies.
-- `.gitignore` prevents unnecessary files such as `.venv` and `__pycache__` from being committed.
+- `from` imports specific objects from a module.
+- `*` imports names from a module, but wildcard imports are generally discouraged.
+- `as` creates an alias.
+- `dir()` helps inspect available names in a module or object.
+- `if __name__ == "__main__":` controls code that runs when a file is executed directly.
+- The `os` module provides operating-system and filesystem functionality.
