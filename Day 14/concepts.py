@@ -51,3 +51,29 @@ for v, ms in enumerate(msg, start = 1):
     print(v, ms, end=" ")
 
 print("\n----------------------------------")
+
+
+# local and gloabal variables
+
+name = 'Sam'
+
+def update_name():
+    name = 'Python'
+    print("Inside function : ", name)
+
+update_name()
+print("Outside function : ", name)
+
+
+# global keyword
+
+count = 40
+
+def update_count():
+    global count
+    count = 50
+    print("Modified count = ",count)
+
+print("Before modification (count) = ", count)
+update_count()
+print("After modification (count) = ", count)

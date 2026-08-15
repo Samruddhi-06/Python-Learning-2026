@@ -370,6 +370,136 @@ path = os.path.join("folder", "file.txt")
 print(path)
 ```
 
+## 8. Global vs Local Variables
+
+A variable's **scope** determines where that variable can be accessed in a program.
+
+### Local Variable
+
+A variable created inside a function is called a local variable.
+
+It can normally be accessed only inside that function.
+
+```python
+def greet():
+    name = "Sam"
+    print(name)
+
+greet()
+```
+
+Here, `name` is a local variable.
+
+Trying to access it outside the function will cause a `NameError`:
+
+```python
+def greet():
+    name = "Sam"
+
+greet()
+
+print(name)   # NameError
+```
+
+---
+
+### Global Variable
+
+A variable created outside a function is called a global variable.
+
+It can be accessed from different parts of the program, including inside functions.
+
+```python
+name = "Sam"
+
+def greet():
+    print(name)
+
+greet()
+```
+
+Here, `name` is a global variable.
+
+---
+
+## Global vs Local Variable
+
+```python
+name = "Global"
+
+def display():
+    name = "Local"
+    print("Inside function:", name)
+
+display()
+
+print("Outside function:", name)
+```
+
+Output:
+
+```text
+Inside function: Local
+Outside function: Global
+```
+
+The local variable takes priority inside the function.
+
+---
+
+## global Keyword
+
+The `global` keyword is used when we want to modify a global variable from inside a function.
+
+```python
+count = 10
+
+def update():
+    global count
+    count = 20
+
+update()
+
+print(count)
+```
+
+Output:
+
+```text
+20
+```
+
+Without the `global` keyword, assigning to `count` inside the function would create a new local variable instead of modifying the global variable.
+
+---
+
+## Example
+
+```python
+x = 10
+
+def change_value():
+    global x
+    x = 50
+
+print("Before:", x)
+
+change_value()
+
+print("After:", x)
+```
+
+Output:
+
+```text
+Before: 10
+After: 50
+```
+
+### Important Note
+
+The `global` keyword should be used only when necessary. In larger programs, passing values to functions and returning results is generally easier to understand and maintain than modifying global variables directly.
+
 ---
 
 # Summary
