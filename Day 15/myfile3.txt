@@ -1,0 +1,5 @@
+Maths : 55
+English : 63
+Science : 45
+Hindi : 75
+SST : 59
