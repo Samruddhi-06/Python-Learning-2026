@@ -26,3 +26,16 @@ print(list(l1))
 
 sum = reduce(lambda x,y : x+y, num)
 print(sum)
+
+
+# is vs ==
+
+a = 8
+b = 9
+print(a is b)
+print(a == b)
+
+x = [8,9]
+y = [8,9]
+print(x is y)
+print(x == y)
