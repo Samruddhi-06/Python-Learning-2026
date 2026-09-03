@@ -34,6 +34,9 @@ obj = ChildClass()
 obj.child_method()
 obj.parent_method()
 
+p = ParentClass()
+p.parent_method()
+
 
 # Magic/ Dunder mathods
 
