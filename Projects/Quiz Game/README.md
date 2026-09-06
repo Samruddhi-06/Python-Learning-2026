@@ -1,6 +1,3 @@
-Absolutely — here is a complete `README.md` for your **Quiz Game** project, matching the style of your previous project READMEs.
-
-````markdown
 # Quiz Game in Python
 
 ## Description
@@ -98,26 +95,19 @@ For example:
 ```text
 Your answer :- hello
 Invalid Choice!! Enter between 1 & 4
-````
 
-The program uses `try-except` to handle `ValueError`.
+The program uses try-except to handle ValueError.
 
-### 2. Number outside the valid range
+2. Number outside the valid range
 
 For example:
 
-```text
 Your answer :- 9
 Invalid Choice!! Enter between 1 & 4
-```
 
-Only values from `1` to `4` are accepted.
+Only values from 1 to 4 are accepted.
 
----
-
-## Example Output
-
-```text
+Example Output
 ----------------------------
 Q1. Which keyword is used to define a function?
 1. func
@@ -155,73 +145,51 @@ Score :- 7
 Do you want to play again?
 1. yes
 2. no
-```
-
----
-
-## Project Structure
-
-```text
+Project Structure
 Projects/
 └── Quiz_Game/
     ├── Quiz_Game.py
     └── README.md
-```
-
----
-
-## How to Run
+How to Run
 
 Make sure Python is installed on your computer.
 
 Open the project folder in VS Code or a terminal and run:
 
-```bash
 python Quiz_Game.py
-```
-
----
-
-## Learning Objective
+Learning Objective
 
 The main purpose of this project is to practice combining multiple Python concepts into a single working program.
 
 This project particularly helped me understand:
 
-* Nested loops
-* `break` and `continue`
-* Input validation
-* Exception handling
-* Score calculation
-* Boolean flags
-* Program flow and decision making
-
----
-
-## Future Improvements
+Nested loops
+break and continue
+Input validation
+Exception handling
+Score calculation
+Boolean flags
+Program flow and decision making
+Future Improvements
 
 The game can be improved in the future by adding:
 
-* More questions
-* Randomized questions
-* Randomized answer options
-* Different difficulty levels
-* A timer for each question
-* Multiple players
-* High-score tracking
-* Functions to organize the code
-* A cleaner user interface
-* Questions loaded from a file
+More questions
+Randomized questions
+Randomized answer options
+Different difficulty levels
+A timer for each question
+Multiple players
+High-score tracking
+Functions to organize the code
+A cleaner user interface
+Questions loaded from a file
+Author
 
----
-
-## Author
-
-**Samruddhi**
+Samruddhi
 
 This project was created as part of my Python learning journey.
 
-````
 
 Save it as:
 
@@ -230,6 +198,3 @@ Projects/
 └── Quiz_Game/
     ├── Quiz_Game.py
     └── README.md
-````
-
-This is a good **Project 3** README because it documents not just what the program does, but also the Python concepts you practiced.
