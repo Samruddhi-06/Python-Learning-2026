@@ -1,113 +1,260 @@
-# Quiz Game in Python
+# 🎯 Quiz Game in Python
 
-## Description
+A simple **Multiple-Choice Quiz Game** built using Python where the computer asks the user a series of questions with **four options**, and the user has to select the correct answer.
 
-This project is a simple **Multiple-Choice Quiz Game** built using Python.
-
-The computer asks the user a series of multiple-choice questions. The user selects an answer from 1 to 4, and the program checks whether the answer is correct.
-
-The game keeps track of the user's score and allows the user to play the quiz again after completing or ending a quiz.
+The program checks each answer, keeps track of the score, handles invalid input, and allows the user to play the quiz again or exit the game.
 
 ---
 
-## Features
+## 📌 Features
 
-- Multiple-choice questions
-- Four options for each question
-- Validates user input
-- Handles invalid/non-numeric input using `try-except`
-- Prevents answers outside the range of 1 to 4
-- Gives immediate feedback for correct and incorrect answers
-- Keeps track of the score
-- Uses different scores for different questions
-- Ends the current quiz when an incorrect answer is given
-- Displays the total score
-- Allows the user to play again
-- Provides an option to exit the game
+* 🧠 Asks the user a series of multiple-choice questions
 
----
+* 🔢 Provides **four options** for each question
 
-## Concepts Used
+* ✅ Checks whether the selected answer is correct
 
-- Lists
-- Nested Lists
-- Variables
-- `for` Loop
-- `while` Loop
-- Nested Loops
-- `if-elif-else`
-- `break`
-- `continue`
-- `try-except`
-- `ValueError`
-- Type Conversion using `int()`
-- List Indexing
-- `len()` Function
-- Boolean Variables
-- Accumulator Variables
-- Input Validation
+* ❌ Displays **"Incorrect!!"** when the selected answer is wrong
+
+* 🎉 Displays **"Correct!!"** when the selected answer is right
+
+* 🏆 Keeps track of the user's score
+
+* 📈 Uses a different score value for each question
+
+* ⚠️ Handles invalid input using `try-except`
+
+* 🚫 Validates answers and only accepts choices between **1 and 4**
+
+* 🔄 Allows the user to play the quiz again
+
+* 🚪 Allows the user to exit the game
+
+* 🔁 Uses loops to control the quiz and replay functionality
 
 ---
 
-## How the Game Works
+## 🧠 Concepts Used
 
-1. The program displays a question with four options.
-2. The user enters an answer between `1` and `4`.
-3. The program validates the input.
-4. If the input is invalid, the user is asked to enter it again.
-5. If the answer is correct:
-   - The user receives the score assigned to that question.
-   - The current score is displayed.
-6. If the answer is incorrect:
-   - The current quiz ends.
-7. The program asks whether the user wants to play again.
-8. If the user chooses `Yes`, the score is reset and a new quiz begins.
-9. If the user chooses `No`, the final score is displayed and the program exits.
+### 1. Nested Lists
 
----
+A nested list is used to store the questions, options, and correct answers.
 
-## Scoring System
+```python
+Questions = [
+    ["Question",
+     "1. Option 1",
+     "2. Option 2",
+     "3. Option 3",
+     "4. Option 4",
+     "Correct Answer"]
+]
+```
 
-Each question has a different score:
-
-| Question | Score |
-|----------|------:|
-| Q1 | 1 |
-| Q2 | 2 |
-| Q3 | 4 |
-| Q4 | 8 |
-| Q5 | 16 |
-| Q6 | 32 |
-| Q7 | 64 |
-
-**Maximum Score = 127**
+Each question contains the question itself, four options, and the correct answer.
 
 ---
 
-## Input Validation
+### 2. `for` Loop
 
-The program handles two types of invalid input.
+A `for` loop is used to go through each question one by one.
 
-### 1. Non-numeric input
+```python
+for i in range(len(Questions)):
 
-For example:
+    # Display and process question
+```
+
+The loop continues until all the questions have been asked or the user gives an incorrect answer.
+
+---
+
+### 3. `while` Loop
+
+`while` loops are used to keep the game running and to allow the user to play again.
+
+```python
+while True:
+
+    # Game logic
+```
+
+The loop continues until the user chooses to exit.
+
+---
+
+### 4. Nested `while` Loop
+
+A nested `while` loop is used to validate the user's answer.
+
+```python
+while True:
+    # Get and validate answer
+```
+
+This ensures that the user enters a valid option before the program checks the answer.
+
+---
+
+### 5. Exception Handling
+
+`try-except` is used to handle invalid input such as letters or other non-numeric values.
+
+```python
+try:
+    ans = int(input("Your answer :- "))
+
+except ValueError:
+    print("Invalid Choice!! Enter between 1 & 4")
+    continue
+```
+
+If the user enters something that cannot be converted into an integer, the program handles the error instead of crashing.
+
+---
+
+### 6. Input Validation
+
+The program checks whether the user's answer is between **1 and 4**.
+
+```python
+if ans < 1 or ans > 4:
+    print("Invalid Choice!! Enter between 1 & 4")
+    continue
+```
+
+This prevents invalid choices such as `0`, `5`, `9`, etc.
+
+---
+
+### 7. Type Conversion
+
+The user's input is converted from a string to an integer using `int()`.
+
+```python
+ans = int(input("Your answer :- "))
+```
+
+The correct answer stored in the question list is also converted into an integer while checking the answer.
+
+```python
+if ans == int(Questions[i][5]):
+```
+
+---
+
+### 8. Score Calculation
+
+A separate list stores the score for each question.
+
+```python
+score = [1, 2, 4, 8, 16, 32, 64]
+```
+
+When the user answers correctly, the corresponding score is added to the total score.
+
+```python
+win += score[i]
+```
+
+The maximum possible score is:
 
 ```text
-Your answer :- hello
-Invalid Choice!! Enter between 1 & 4
+1 + 2 + 4 + 8 + 16 + 32 + 64 = 127
+```
 
-The program uses try-except to handle ValueError.
+---
 
-2. Number outside the valid range
+### 9. Accumulator Variable
 
-For example:
+The `win` variable is used as an accumulator to keep track of the user's current score.
 
-Your answer :- 9
-Invalid Choice!! Enter between 1 & 4
+```python
+win = 0
 
-Only values from 1 to 4 are accepted.
+win += score[i]
+```
 
-Example Output
+Each correct answer increases the score.
+
+---
+
+### 10. `break` and `continue`
+
+`break` and `continue` are used to control the flow of the game.
+
+* `continue` skips the current iteration and starts the next iteration.
+
+* `break` exits the current loop.
+
+For example, `continue` is used when the user enters an invalid answer, while `break` is used to stop the current quiz when an incorrect answer is given.
+
+---
+
+### 11. Boolean Flag
+
+The `game_continue` variable is used as a Boolean flag to control whether the game should continue or stop.
+
+```python
+game_continue = True
+```
+
+If the user chooses to exit:
+
+```python
+game_continue = False
+```
+
+The main game loop then stops.
+
+---
+
+### 12. Multiple Loops and Loop Control
+
+The program uses multiple nested loops:
+
+```text
+Main Game Loop
+│
+├── Question Loop
+│   │
+│   └── Answer Validation Loop
+│
+└── Replay Menu Loop
+```
+
+This project helped me understand how `break` and `continue` behave when multiple loops are present.
+
+---
+
+## 📂 Project Structure
+
+```text
+Quiz Game/
+
+│
+├── Quiz_Game.py
+
+└── README.md
+```
+
+---
+
+## ▶️ How to Run
+
+Make sure Python is installed on your computer.
+
+Run the program using:
+
+```bash
+python Quiz_Game.py
+```
+
+---
+
+## 🎮 Example Output
+
+```text
 ----------------------------
 Q1. Which keyword is used to define a function?
 1. func
@@ -137,67 +284,94 @@ Q3. Which symbol is used for comments in Python?
 3. /*
 4. --
 
+Your answer :- 5
+Invalid Choice!! Enter between 1 & 4
+
 Your answer :- 2
 Correct!!
 Score :- 7
 
 ----------------------------
 Do you want to play again?
-1. yes
-2. no
-Project Structure
-Projects/
-└── Quiz_Game/
-    ├── Quiz_Game.py
-    └── README.md
-How to Run
+ 1. yes
+ 2. no
 
-Make sure Python is installed on your computer.
+Your choice :- 2
 
-Open the project folder in VS Code or a terminal and run:
+--------------------------------
+Your total score becomes :- 7 / 127
+```
 
-python Quiz_Game.py
-Learning Objective
+---
 
-The main purpose of this project is to practice combining multiple Python concepts into a single working program.
+## 🎯 Learning Objective
 
-This project particularly helped me understand:
+This project was created to practice:
 
-Nested loops
-break and continue
-Input validation
-Exception handling
-Score calculation
-Boolean flags
-Program flow and decision making
-Future Improvements
+* Python Lists
 
-The game can be improved in the future by adding:
+* Nested Lists
 
-More questions
-Randomized questions
-Randomized answer options
-Different difficulty levels
-A timer for each question
-Multiple players
-High-score tracking
-Functions to organize the code
-A cleaner user interface
-Questions loaded from a file
+* `for` loops
+
+* `while` loops
+
+* Nested loops
+
+* Conditional statements
+
+* `try-except`
+
+* `ValueError`
+
+* Type conversion using `int()`
+
+* Input validation
+
+* Score calculation
+
+* Accumulator variables
+
+* Boolean variables
+
+* `break` and `continue`
+
+* Program flow and decision making
+
+---
+
+## 🚀 Future Improvements
+
+Some possible improvements for this project:
+
+* Add more questions.
+
+* Randomize the order of questions.
+
+* Randomize the answer options.
+
+* Add different difficulty levels.
+
+* Add a timer for each question.
+
+* Add a limited number of attempts.
+
+* Add a high-score system.
+
+* Store questions in a separate file.
+
+* Convert the quiz logic into functions.
+
+* Use dictionaries or other data structures to organize the questions.
+
+* Add different categories such as Python, Java, SQL, etc.
+
+* Display more detailed game statistics.
 
 ---
 
 ## 👩‍💻 Author
 
-Samruddhi
+**Samruddhi Nikhade**
 
-This project was created as part of my Python learning journey.
-
-
-Save it as:
-
-```text
-Projects/
-└── Quiz_Game/
-    ├── Quiz_Game.py
-    └── README.md
+> A beginner-friendly Python project created while learning and practicing Python programming.
