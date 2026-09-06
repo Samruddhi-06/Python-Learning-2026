@@ -184,7 +184,10 @@ High-score tracking
 Functions to organize the code
 A cleaner user interface
 Questions loaded from a file
-Author
+
+---
+
+## 👩‍💻 Author
 
 Samruddhi
 
