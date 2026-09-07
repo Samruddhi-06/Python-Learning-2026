@@ -25,3 +25,5 @@ for file in files:
 
 with open("Day 24/merged.pdf", "wb") as output_pdf:
     writer.write(output_pdf)
+
+# there are many more functions we can perform using pypdf
