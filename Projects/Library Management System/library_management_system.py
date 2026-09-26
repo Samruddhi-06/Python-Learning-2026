@@ -46,9 +46,34 @@ books = [
 
 
 def add_book():
-    book_id = int(input("Enter book id:"))
-    name = input("Enter book name:")
-    author = input("Enter author name:")
+    while True:
+        try:
+            book_id = int(input("Enter book id:"))
+        except ValueError:
+            print("Invalid book id!!")
+            print()
+            continue
+        break
+
+    for book in books:
+        if book["id"] == book_id:
+            print(f"Book with id {book_id} is already present.")
+            print()
+            return 
+
+    
+    name = input("Enter book name: ").strip()
+
+    if not name:
+        print("Book name cannot be empty!")
+        return
+    
+    author = input("Enter author name:").strip()
+
+    if not author:
+        print("Author name cannot be empty!")
+        return
+
     status = "Available"
 
     book = {
@@ -59,6 +84,8 @@ def add_book():
     }
 
     books.append(book)
+    print("New Book Added.")
+    print()
 
 
 def view_books():
@@ -75,14 +102,35 @@ def view_books():
         print("------------------------------")
 
 def search_book():
-    print(" 1. Using book id\n 2. Using book name\n 3. Using author name \n 4. Using book status")
-    choice = int(input("How do you want to search a book: "))
 
+    while True:
+        print(" 1. Using book id\n 2. Using book name\n 3. Using author name \n 4. Using book status")
+        try:
+            choice = int(input("How do you want to search a book: "))
+            print()
+        except ValueError:
+            print("Enter a valid choice(1-4)!!")
+            print()
+            continue
+
+        if choice < 1 or choice > 4:
+            print("Enter a valid choice(1-4)!!")
+            print()
+            continue
+        break
 
     if choice == 1:
         found = False
-        book_id = int(input("Enter book id: "))
-        print()
+        while True:
+            try:
+                book_id = int(input("Enter book id: "))
+                print()
+            except ValueError:
+                print("Invalid id!!")
+                print()
+                continue
+            break
+
         for book in books:
             if book["id"] == book_id:
                 print(book["id"])
@@ -135,10 +183,89 @@ def search_book():
                 found = True
         if not found:
             print("Book not found!!")
-    else:
-            print("Invalid Choice!!")
 
+
+
+def issue_book():
+    while True:
+        try:
+            book_id = int(input("Enter the book id: "))
+            print()
+        except ValueError:
+            print("Invalid book id!!")
+            print()
+            continue
+        break
     
+    found = False
+
+    for book in books:
+        if book["id"] == book_id:
+            found = True  
+            if book["status"] == "Available":
+                book["status"] = "Unavailable"
+                print("Book issued.")
+                print()
+            elif book["status"] == "Unavailable":
+                print("Sorry! The book is unavailable.")
+                print()
+    if not found:
+        print("Book not found.")
+        print()
+
+
+def return_book():
+    while True:
+        try:
+            book_id = int(input("Enter the book_id: "))
+            print()
+        except ValueError:
+            print("Invalid book id!!")
+            print()
+            continue
+        break
+    
+    found = False
+
+    for book in books:
+        if book["id"] == book_id:
+            found = True
+            if book["status"] == "Unavailable":
+                print("Book returned successfully!")
+                print()
+                book["status"] = "Available"
+            elif book["status"] == "Available":
+                print("This book was never issued.")
+                print()
+    if not found:
+        print("Book not found.")
+        print()
+
+def remove_book():
+    while True:
+        try:
+            book_id = int(input("Enter the book id: "))
+            print()
+        except ValueError:
+            print("Invalid book id!!")
+            print()
+            continue
+        break
+    
+    found = False
+
+    for book in books:
+        if book["id"] == book_id:
+            found = True
+            books.remove(book)
+            print(f"Book with id {book_id} has been removed.")
+            print()
+            break
+    if not found:    
+        print("Book not found.")
+        
+
+
 
 while True:
 
@@ -148,7 +275,18 @@ while True:
     print()
     
     print(" 1. Add Book\n 2. View Books\n 3. Search Book\n 4. Issue Book\n 5. Return Book\n 6. Remove Book\n 7. Exit")
-    choice = int(input("Enter your choice: "))
+    try:
+        choice = int(input("Enter your choice: "))
+        print()
+    except ValueError:
+        print("Enter a valid choice (1-7)!!")
+        print()
+        continue
+
+    if choice < 1 or choice > 7:
+        print("Enter a valid choice (1-7)!!")
+        print()
+        continue
 
     if choice == 1:
         add_book()
@@ -156,15 +294,12 @@ while True:
         view_books()
     elif choice == 3:
         search_book()
-    # elif choice == 4:
-    #     issue_book()
-    # elif choice == 5:
-    #     return_book()
-    # elif choice == 6:
-    #     remove_book()
+    elif choice == 4:
+        issue_book()
+    elif choice == 5:
+        return_book()
+    elif choice == 6:
+        remove_book()
     elif choice == 7:
-        break
-    else:
-        print("Invalid Choice")
-    
+        break   
 
